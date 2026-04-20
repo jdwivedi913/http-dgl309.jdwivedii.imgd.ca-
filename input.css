@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+@theme {
+    --content-width: clamp(200px, 90%, 1440px);
+    --font-headings: "PT Serif", serif;
+    --font-body: "Atkinson Hyperlegible", sans-serif;
+
+    /* container */
+    --content-width: clamp(200px, 90%, 1440px);
+
+    /* green */
+    --color-moss-300: oklch(0.7581 0.1008 109.22);
+    --color-moss-500: oklch(0.5443 0.0821 109.7);
+    --color-moss-700: oklch(0.3813 0.0532 108.68);
+
+    /* yellow */
+    --color-yolk-300: oklch(0.8834 0.1583 91.38);
+    --color-yolk-500: oklch(0.8303 0.166 87.4);
+    --color-yolk-700: oklch(0.6688 0.1201 84.55);
+
+    /* orange */
+    --color-tangerine-300: oklch(0.6746 0.155 45.62);
+    --color-tangerine-500: oklch(0.5754 0.1491 41.16);
+    --color-tangerine-700: oklch(0.4244 0.105 42.33);
+
+    /* pink */
+    --color-hotpink-300: oklch(0.6401 0.1801 6.16);
+    --color-hotpink-500: oklch(0.5268 0.1919 11.36);
+    --color-hotpink-700: oklch(0.3834 0.1349 10.34);
+
+    /* purple */
+    --color-grape-300: oklch(0.5197 0.1295 322.46);
+    --color-grape-500: oklch(0.3828 0.0897 322.22);
+    --color-grape-700: oklch(0.2654 0.0577 321.5);
+
+    /* blue */
+    /* add your new colour custom properties here */
+    --color-lake-300: oklch(0.3027 0.0527 230.76);
+    --color-lake-500: oklch(0.4507 0.0829 235.72);
+    --color-lake-700: oklch(0.6495 0.1271 235.17);
+}
+
+@layer base {
+
+    body {
+        @apply bg-stone-200 text-moss-700 text-base;
+    }
+
+    main {
+        @apply w-full md:w-(--content-width) md:mx-auto md:border-x md:border-stone-300;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-headings font-bold;
+    }
+
+    h1 {
+        @apply text-4xl md:text-5xl;
+    }
+
+    h2 {
+        @apply text-2xl md:text-3xl;
+    }
+
+    h3 {
+        @apply text-lg md:text-xl;
+    }
+
+    p {
+        @apply font-body max-w-[60ch] pt-4;
+    }
+
+    ul {
+        @apply max-w-[60ch];
+    }
+
+    .list-bullet {
+        @apply list-disc ml-3;
+    }
+
+    /* .nav-list > ul {
+        @apply list-none;
+    } */
+
+    .paragraph-short {
+        @apply max-w-[40ch]
+    }
+
+    svg {
+        @apply w-12;
+    }
+
+    mark {
+        color: white;
+        background-color: oklch(0.3813 0.0532 108.68);
+        opacity: 0.8;
+    }
+
+
+    /* light-mode / dark-mode */
+    html[data-theme="dark"] {
+        --color-moss-500: oklch(0.7581 0.1008 109.22);
+        --color-moss-700: oklch(86.9% 0.005 56.366);
+        --color-tangerine-500: oklch(0.6688 0.1201 84.55);
+        --color-white: oklch(14.5% 0 0);
+        /* neutral-950 */
+        --color-stone-200: oklch(20.5% 0 0);
+        /* neutral-900 */
+        --color-stone-50: oklch(26.9% 0 0);
+        /* neutral-800 */
+        --color-stone-100: oklch(20.5% 0 0);
+        /* neutral-900 */
+        --color-stone-300: oklch(37.1% 0 0);
+        /* neutral-700 */
+        --color-stone-500: oklch(87% 0 0);
+    }
+}
+
+@layer components {
+
+    .btn {
+        @apply block h-fit px-8 py-2 border-[1.5px] border-moss-500 rounded-md bg-moss-500 text-white text-center text-sm font-bold uppercase cursor-pointer self-end md:w-fit hover:border-stone-500 hover:bg-transparent hover:text-stone-500;
+    }
+
+    .btn-inverse {
+        @apply block h-fit px-8 py-2 border-[1.5px] border-stone-500 rounded-md bg-transparent text-stone-500 text-center text-sm font-bold uppercase cursor-pointer self-end md:w-fit hover:border-moss-500 hover:bg-moss-500 hover:text-white;
+    }
+
+    .link {
+        @apply cursor-pointer hover:underline hover:decoration-moss-500 hover:underline-offset-4 text-moss-700;
+    }
+
+    .cls-1 {
+        fill: var(--color-moss-500);
+    }
+
+    .cls-accent {
+        fill: var(--color-tangerine-500);
+    }
+
+    /* popovers */
+    .navbar {
+        anchor-name: --navbar;
+    }
+
+    #mega-menu__popover[popover] {
+        inset-block-start: anchor(--navbar bottom);
+    }
+
+    #alert__popover::backdrop,
+    #directions__popover::backdrop,
+    #hours__popover::backdrop {
+        @apply bg-stone-800/90;
+    }
+
+    /* light-mode / dark-mode */
+    .theme-toggle {
+        position: relative;
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .theme-toggle input {
+        position: absolute;
+        inset: 0;
+
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .owl {
+        position: absolute;
+        inset: 0;
+        cursor: pointer;
+    }
+
+    .icon-owls {
+        position: relative;
+        inline-size: 36px;
+        block-size: 36px;
+        margin-inline-start: 0.5rem;
+        transform: translateY(2px);
+    }
+
+    .icon-owls .owl {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .icon-owls .owl--a {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    header:has(#theme-toggle:checked) .icon-owls .owl--a {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    header:has(#theme-toggle:checked) .icon-owls .owl--b {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+
+}
